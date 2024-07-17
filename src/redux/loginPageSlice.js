@@ -6,7 +6,7 @@ export const loginPageSlice = createSlice({
     initialState: {
         isAccountCreated: false,
         isLoading: false,
-        data: []
+        data: null
     },
     reducers: {
         toggle:  (state) => {

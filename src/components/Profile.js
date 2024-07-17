@@ -1,12 +1,12 @@
 import React from "react"
-import { useSelector } from "react-redux"
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Profile(){
-    const { data } = useSelector(state => state.loginPage)
-    console.log(data, "data")
+    const { user, logout } = useAuth0()
     return (
         <>
-            <h1>Welcome!</h1>
+            <h1>{'Welcome ' + user?.nickname + '!'}</h1>
+            <button onClick={() => logout()}>Log out</button>
         </>
     )
 }

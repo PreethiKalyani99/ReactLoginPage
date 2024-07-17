@@ -1,25 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { DOMAIN, CLIENT_ID } from "../config/index.js";
-
-export const loginUser = createAsyncThunk("loginUser", async () => {
-    console.log(DOMAIN, CLIENT_ID, "info")
-    try{
-        const response = await fetch(`https://${DOMAIN}/authorize?response_type=code&client_id=${CLIENT_ID}&connection=CONNECTION&redirect_uri=http://localhost:3000&state=statevaluedskafjlkfj`,
-            {
-                method: 'GET'
-            }
-        )
-
-        if (!response.ok) {
-            throw new Error('Failed to Login')
-        }
-    
-        return await response.json()
-    }
-    catch(error){
-        console.log(error)
-    }
-})
+import { DOMAIN } from "../config/index.js";
 
 export const signUp = createAsyncThunk("signUp", async (userInfo) => {
     try{
@@ -37,7 +17,8 @@ export const signUp = createAsyncThunk("signUp", async (userInfo) => {
             throw new Error('Failed to create account')
         }
     
-        return await response.json()
+        const data = await response.json();
+        return data
     }
     catch(error){
         console.log(error)
